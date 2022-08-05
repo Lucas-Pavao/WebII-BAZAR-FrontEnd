@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,9 +16,5 @@
   "bugs": {
     "url": "https://github.com/Lucas-Pavao/WebII-BAZAR-FrontEnd/issues"
   },
-  "homepage": "https://github.com/Lucas-Pavao/WebII-BAZAR-FrontEnd#readme",
-  "dependencies": {
-    "axios": "^0.27.2"
-  }
- 
+  "homepage": "https://github.com/Lucas-Pavao/WebII-BAZAR-FrontEnd#readme"
 }
