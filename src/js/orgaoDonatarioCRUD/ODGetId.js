@@ -4,10 +4,10 @@ document.getElementById("btnBusca").addEventListener("click", buscarId);
 
 async function buscarId(target) {
   target.preventDefault();
-  const idProd = document.getElementById("idProd").value;
+  const idOD = document.getElementById("idOD").value;
   const divmain = document.getElementById("mainDiv");
 
-  fetch(URL + `/donatario/${idProd}`, { Method: "GET" })
+  fetch(URL + `/donatario/${idOD}`, { Method: "GET" })
     .then((response) => {
       return response.json();
     })
