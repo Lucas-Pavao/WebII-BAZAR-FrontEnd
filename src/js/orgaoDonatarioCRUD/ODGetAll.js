@@ -1,46 +1,24 @@
-document.getElementById("btnMostra").addEventListener("click", mostrar);
+const listEl = document.querySelector("ul");
 
-async function mostrar(target) {
-  target.preventDefault();
-  const divmain = document.getElementById("mainDiv");
-
-  fetch(URL + "/donatario", { Method: "GET" })
-    .then((response) => {
-      return response.json();
+fetch(URL + `/donatario`)
+  .then((response) => response.json())
+  .then((data) =>
+    data.forEach((od) => {
+      listEl.insertAdjacentHTML(
+        "beforeend",
+        `<div id="itens" class="posts-list row" >
+    <div class="card mt-4 col-md-6 bg-ligt" style="width: 18rem;">
+        <div  class="card-body">
+          <h5 class="card-title">${od.id} - ${od.nome}</h5>
+          
+          <h6 class="card-subtitle mb-2 text-muted">${od.endereco}<br> ${od.telefone}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">${od.horarioFuncionamento}</h6>
+          <p class="card-text">${od.descricao}</p>
+          <button onclick="deletarDonatario(${od.id})" id="btn-deletar" type="submit" class="btn btn-outline-secondary">Deletar</button>
+          <button onclick="editarDonatario(${od.id})" id="btn-editar" type="submit" class="btn btn-outline-secondary">Editar</button>
+        </div>
+      </div>
+</div>`
+      );
     })
-    .then((data) => {
-      if (data.status == 404) {
-        divmain.innerHTML = "donatario não encontrado";
-        return;
-      } else if (data.status == 500) {
-        divmain.innerHTML = "Problema com a requisição";
-        return;
-      }
-      console.log(data);
-      let { id, nome, endereco, telefone, horariofuncionamento, descricao } =
-        data;
-      for (let i = 0; i < data.length; i++) {
-        divmain.innerHTML = `<table>
-    <tr>
-    <th>id</th>
-    <th>nome</th>
-    <th>endereco</th>
-    <th>telefone</th>
-    <th>horariofuncionamento</th>
-    <th>descrição</th>
-    </tr>
-    <tr>
-    <td>${id}</td>
-    <td>${nome}</td>
-    <td>${endereco}</td>
-    <td>${telefone}</td>
-    <td>${horariofuncionamento}</td>
-    <td>${descricao}</td>
-    </tr>
-    </table>`;
-      }
-    })
-    .catch((erro) => {
-      alert(erro);
-    });
-}
+  );
