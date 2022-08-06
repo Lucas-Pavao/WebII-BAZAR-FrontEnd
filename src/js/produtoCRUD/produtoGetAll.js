@@ -1,41 +1,30 @@
 const URL = "http://localhost:8080";
 
-document.getElementById("btnMostra").addEventListener("click", mostrar);
+const listEl = document.getElementById("teste");
+listEl.addEventListener("click", buscar);
 
-async function mostrar(target) {
+async function buscar(target) {
   target.preventDefault();
-  const divmain = document.getElementById("mainDiv");
 
-  fetch(URL + "/produto", { Method: "GET" })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      if (data.status == 404) {
-        divmain.innerHTML = "produto não encontrado";
-        return;
-      } else if (data.status == 500) {
-        divmain.innerHTML = "Problema com a requisição";
-        return;
-      }
-      console.log(data);
-      let { codigo, nome, descricao } = data;
-      for (let i = 0; i < data.length; i++) {
-        divmain.innerHTML = `<table>
-    <tr>
-    <th>codigo</th>
-    <th>nome</th>
-    <th>descrição</th>
-    </tr>
-    <tr>
-    <td>${codigo}</td>
-    <td>${nome}</td>
-    <td>${descricao}</td>
-    </tr>
-    </table>`;
-      }
-    })
-    .catch((erro) => {
-      alert(erro);
-    });
+  fetch(URL + `/produto`)
+    .then((response) => response.json())
+    .then((data) =>
+      data.forEach((od) => {
+        listEl.insertAdjacentHTML(
+          "beforeend",
+          `<div  >
+    <div>
+        <div  >
+          <h5 >${od.id} - ${od.nome}</h5>
+          
+          <h6 >${od.endereco}<br> ${od.telefone}</h6>
+          <h6 >${od.horariofuncionamento}</h6>
+          <p >${od.descricao}</p>
+         
+        </div>
+      </div>
+</div>`
+        );
+      })
+    );
 }

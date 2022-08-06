@@ -4,10 +4,10 @@ document.getElementById("btnBusca").addEventListener("click", buscarId);
 
 async function buscarId(target) {
   target.preventDefault();
-  const idProd = document.getElementById("idProd").value;
+  const idOD = document.getElementById("idProd").value;
   const divmain = document.getElementById("mainDiv");
 
-  fetch(URL + `/produto/${idProd}`, { Method: "GET" })
+  fetch(URL + `/produto/${idOD}`, { Method: "GET" })
     .then((response) => {
       return response.json();
     })
@@ -20,11 +20,12 @@ async function buscarId(target) {
         return;
       }
       console.log(data);
-      let { nome, descricao } = data;
+      let { codigo, nome, descricao, id_lote } = data;
 
-      divmain.innerHTML = `<h3>${nome}</h3>
+      divmain.innerHTML = `<h3>${codigo}-${nome}</h3>
                                 <br/>
-                                Descrição: ${descricao}`;
+                                Descrição: ${descricao}
+                                Descrição: ${id_lote}`;
     })
     .catch((erro) => {
       alert(erro);

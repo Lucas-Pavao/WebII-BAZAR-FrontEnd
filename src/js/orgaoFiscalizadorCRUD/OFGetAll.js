@@ -12,13 +12,13 @@ async function buscar(target) {
       data.forEach((od) => {
         listEl.insertAdjacentHTML(
           "beforeend",
-          `<div id="itens" class="posts-list row" >
-    <div class="card mt-4 col-md-6 bg-ligt" style="width: 18rem;">
-        <div  class="card-body">
-          <h5 class="card-title">${od.id} - ${od.nome}</h5>
+          `<div >
+    <div >
+        <div >
+          <h5 >${od.id} - ${od.nome}</h5>
           
          
-          <p class="card-text">${od.descricao}</p>
+          <p >${od.descricao}</p>
          
         </div>
       </div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastrar Lote</title>
+
+
+</head>
+
+<body>
+    <header>
+        <h1>Cadastro de Lote</h1>
+    </header>
+    <main>
+        <form>
+            <div>
+                <label f>Id do lote: </label>
+                <input type="text" name="idLote" id="idLote">
+            </div>
+            <div>
+                <label>Observação: </label>
+                <input type="text" name="observacao" id="observacao">
+            </div>
+            <br>
+            <label>Selecione o Orgão Donatario: </label>
+            <select id="orgaoDonatarioSelect">
+                <option selected>Selecione o Orgão Donatario</option>
+            </select>
+            <br>
+
+            <label>Selecione o Orgão Ficalizador: </label>
+            <select id="orgaoFiscalizadorSelect">
+                <option selected>Selecione o Orgão Fiscalizador</option>
+            </select>
+
+        </form>
+        <button type="submit" id="btnCadastro">Cadastrar</button>
+        <br>
+        <a href="cadastroLote.html"><button id="btnVoltar">VOLTAR</button></a>
+    </main>
+
+    <script src="../js/loteCRUD/lotePost.js">
+
+    </script>
+</body>
+
+</html>

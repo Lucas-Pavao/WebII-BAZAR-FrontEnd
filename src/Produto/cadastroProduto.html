@@ -5,21 +5,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Cadastro Produto</title>
+
 </head>
 
 <body>
-    <form id="formCadastro">
-        codigo:<input type="text" name="codigo" id="codigo" /><br />
-        nome:<input type="text" name="nome" id="nome" /><br />
-        descrição: <input type="text" name="descricao" id="descricao" /><br />
+    <header>
+        <h1>Cadastro de Produto</h1>
+        <h2></h2>
+    </header>
+    <main>
+        <form>
+            <div>
+                <label>Código: </label>
+                <input type="text" name="codigo" id="pCode">
+            </div>
+            <div>
+                <label>Nome: </label>
+                <input type="text" name="nome" id="pNome">
+            </div>
+            <div>
+                <label>Descrição: </label>
+                <input type="text" name="descricao" id="pDescricao">
+            </div>
 
-        <button id="btnCadastro">cadastrar</button>
+            <select id="lotes" name="passs">
+                <option selected>Selecione o Lote</option>
+            </select>
+        </form>
+        <button id="btnCadastro" type="submit">Cadastrar</button>
+        <br>
+        <a href="indexProduto.html"><button id="btnVoltar">VOLTAR</button></a>
 
-    </form>
-
-    <a href="../index.html">Inicio</a>
-    <script src="../../js/produtoCRUD/produtoPost.js"></script>
+    </main>
+    <script src="../js/produtoCRUD/produtoPost.js"></script>
 </body>
 
 </html>

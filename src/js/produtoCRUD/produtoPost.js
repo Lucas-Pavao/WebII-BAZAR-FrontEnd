@@ -1,32 +1,51 @@
 const URL = "http://localhost:8080";
+async function rq1() {
+  fetch(URL + `/lote`, {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      let allLotes = data;
+      console.log(allLotes);
+      let html = "";
+      for (var i = 0; i < allLotes.length; i++) {
+        html +=
+          "<option id='loteSelect' value=" +
+          allLotes[i].id +
+          ">" +
+          allLotes[i].id +
+          " - " +
+          allLotes[i].observacao +
+          "</option>";
+      }
 
-document.getElementById("btnCadastro").addEventListener("click", onSubmit);
-async function onSubmit(target) {
-  target.preventDefault();
+      document.getElementById("lotes").innerHTML = html;
+    });
+}
+rq1();
+document
+  .getElementById("btnCadastro")
+  .addEventListener("click", cadastraProduto);
+async function cadastraProduto() {
+  const idLote = document.getElementById("lotes").value;
+  const codigoProd = document.getElementById("pCode").value;
+  const nomeProd = document.getElementById("pNome").value;
+  const descricaoProd = document.getElementById("pDescricao").value;
 
-  const json = {};
-
-  const dataForm = new FormData(document.getElementById("formCadastro"));
-
-  for ([key, value] of dataForm) {
-    json[key] = value;
-  }
-
-  console.log(json);
-  fetch(URL + "/produto", {
+  const requestOptions = {
     method: "POST",
-    body: JSON.stringify(json),
     headers: {
       "Content-Type": "application/json",
     },
-  })
-    .then(function (response) {
-      return response.text();
-    })
-    .then(function (data) {
-      alert(data);
-    })
-    .catch(function (erro) {
-      alert(erro);
-    });
+    body: JSON.stringify({
+      nome: nomeProd,
+      codigo: codigoProd,
+      descricao: descricaoProd,
+      idLote: idLote,
+    }),
+  };
+
+  await fetch("http://localhost:8080/produto", requestOptions)
+    .then((response) => response.json())
+    .then((window.location.href = "cadastroProduto.html"));
 }

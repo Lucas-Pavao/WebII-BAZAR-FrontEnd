@@ -1,30 +1,24 @@
 const URL = "http://localhost:8080";
 
-document.getElementById("btnDeletar").addEventListener("click", deletar);
-
-async function deletar(target) {
+document.getElementById("btnDeletar").addEventListener("click", onSubmit);
+async function onSubmit(target) {
   target.preventDefault();
-  const codigo = document.getElementById("codigo").value;
 
-  const json = {};
+  const idProd = document.getElementById("idProd").value;
 
-  const dataForm = new FormData(document.forms[0]);
-
-  for ([key, value] of dataForm) {
-    json[key] = value;
-  }
-
-  fetch(`http://localhost:8080/produto/${codigo}`, {
+  console.log(idProd);
+  await fetch(URL + `/produto/${idProd}`, {
     method: "DELETE",
-    body: JSON.stringify(json),
     headers: {
       "Content-Type": "application/json",
     },
   })
     .then(function (response) {
-      alert("Produto deletado com sucesso!");
+      return response.text();
     })
-    .then(function (data) {})
+    .then(function (data) {
+      alert(data);
+    })
     .catch(function (erro) {
       alert(erro);
     });
