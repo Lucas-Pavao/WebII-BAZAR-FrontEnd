@@ -4,29 +4,28 @@ document.getElementById("btnDeletar").addEventListener("click", deletar);
 
 async function deletar(target) {
   target.preventDefault();
-  const idProd = document.getElementById("idProd").value;
-  const divmain = document.getElementById("mainDiv");
-  console.log(idProd);
-  fetch(URL + `/produto/${idProd}`, {
-    Method: "DELETE",
-    headers: { "content-type": "application/json" },
-  })
-    .then((data) => {
-      if (data.status == 404) {
-        divmain.innerHTML = "produto não encontrado";
-        return;
-      } else if (data.status == 500) {
-        divmain.innerHTML = "Problema com a requisição";
-        return;
-      }
-      console.log(data);
-      let { nome, descricao } = data;
+  const codigo = document.getElementById("codigo").value;
 
-      divmain.innerHTML = `<h3>${nome}</h3>
-                              <br/>
-                              Descrição: ${descricao}`;
+  const json = {};
+
+  const dataForm = new FormData(document.forms[0]);
+
+  for ([key, value] of dataForm) {
+    json[key] = value;
+  }
+
+  fetch(`http://localhost:8080/produto/${codigo}`, {
+    method: "DELETE",
+    body: JSON.stringify(json),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      alert("Produto deletado com sucesso!");
     })
-    .catch((erro) => {
+    .then(function (data) {})
+    .catch(function (erro) {
       alert(erro);
     });
 }
